@@ -1,0 +1,44 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+import { profile } from "@/settings";
+import { publications } from "@/data/cv";
+import ProfilePictures from "@/assets/marta.jpeg";
+import Hero from "@/components/ui/Hero.astro";
+import Grid from "@/components/ui/Grid.astro";
+import ArticleList from "@/components/ui/ArticleList.astro";
+
+const { fullName, title, institute, research_areas } = profile;
+
+const excludeProceedings = publications.filter(
+  (pub) => pub.type.toLowerCase() !== "proceedings",
+);
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+---
+
+<Layout>
+  <!-- Hero Section -->
+  <section class="flex items-center gap-12 border-b pb-12">
+    <Hero
+      fullName={fullName}
+      title={title}
+      institute={institute}
+      profilePicture={ProfilePictures}
+    />
+  </section>
+
+  <!-- Research Areas -->
+  <section class="border-b py-12">
+    <Grid gridTitle="Research Areas" gridItems={research_areas} />
+  </section>
+
+  <!-- Recent Publications -->
+  <section class="border-t py-12">
+    <ArticleList
+      listTitle="Recent Publications"
+      listItems={excludeProceedings}
+    />
+  </section>
+</Layout>

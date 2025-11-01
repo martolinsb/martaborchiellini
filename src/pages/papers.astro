@@ -1,0 +1,111 @@
+---
+import Inspire from "@/assets/social-icons/inspire.svg";
+import Arxiv from "@/assets/social-icons/arxiv.svg";
+import Layout from "@/layouts/Layout.astro";
+import { publications } from "@/data/cv";
+import { highlightAuthor, orderElement } from "@/lib/utils.ts";
+import { template, social, profile } from "@/settings";
+
+const ALL_PAPERS = publications; // This will be replaced with dynamic data later
+
+const publicationsWithoutProceedings = ALL_PAPERS.filter(
+    (pub) => pub.type.toLowerCase() !== "proceedings",
+);
+
+let orderedPub = [] as typeof ALL_PAPERS;
+
+if (publicationsWithoutProceedings.length > 0) {
+    orderedPub = [...publicationsWithoutProceedings]
+        .sort((a, b) => {
+            return orderElement(a, b);
+        })
+        .slice(
+            0,
+            template.maxLastArticle === -1
+                ? publicationsWithoutProceedings.length
+                : template.maxLastArticle,
+        );
+}
+
+---
+
+<Layout title=`Papers | ${profile.fullName}`>
+    <div class="prose max-w-none">
+        <h1 class="mb-8 text-3xl font-bold">First author papers</h1>
+
+        <div class="space-y-8">
+            {
+                orderedPub.map((paper) => (
+                    <div class="card bg-base-200">
+                        <div class="card-body">
+                            <h2 class="card-title text-xl">
+                                <a
+                                    href={template.base + paper.link}
+                                    class="hover:text-accent"
+                                >
+                                    {paper.title}
+                                </a>
+                            </h2>
+                            <p class="mb-2 text-base">
+                                <span class="font-medium">Authors:</span>{" "}
+                                <span
+                                    set:html={highlightAuthor(paper.authors)}
+                                />
+                            </p>
+                            <p class="mb-3 text-sm">
+                                <span class="italic">{paper.journal}</span> •{" "}
+                                {paper.time}
+                            </p>
+                            <p class="text-sm text-base-content/80">
+                                {paper.abstract}
+                            </p>
+                            {paper.link && paper.link != "#" && (
+                                <div class="card-actions mt-4 justify-end">
+                                    <a
+                                        href={paper.link}
+                                        class="btn btn-secondary btn-sm text-secondary-content"
+                                        target="_blank"
+                                    >
+                                        Read Paper
+                                    </a>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+        <div
+            class="mt-8 rounded-lg bg-base-200 p-4 text-center font-semibold text-secondary"
+        >
+            <p>See the complete list of papers and publications</p>
+            <div class="flex flex-wrap items-center justify-center space-x-12">
+                <!-- Inspire -->
+                {
+                    social.inspire !== "" && (
+                        <a
+                            href={social.inspire}
+                            target="_blank"
+                            class="inline-flex size-12 items-center justify-center rounded-xl transition-all duration-300 hover:bg-primary/20"
+                        >
+                            <Inspire class="size-8" fill="currentColor" />
+                        </a>
+                    )
+                }
+
+                <!-- arxiv -->
+                {
+                    social.arxiv !== "" && (
+                        <a
+                            href={social.arxiv}
+                            target="_blank"
+                            class="inline-flex size-12 items-center justify-center rounded-xl transition-all duration-300 hover:bg-primary/20"
+                        >
+                            <Arxiv class="size-8" fill="currentColor" />
+                        </a>
+                    )
+                }
+            </div>
+        </div>
+    </div>
+</Layout>

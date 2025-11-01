@@ -1,0 +1,74 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import List from "@/components/ui/List.astro";
+import {profile} from "@/settings"
+
+---
+
+<Layout title=`Research | ${profile.fullName}` description="I am a PhD candidate in astroparticle physics specialising in the study of Galactic Cosmic Rays (GCRs), with a focus on AMS-02 data analysis and GCR transport phenomenology. My work combines data-driven methods and theoretical modelling to investigate cosmic-ray propagation and composition."
+>
+  <div class="prose max-w-none">
+    <h1 class="mb-8 text-3xl font-bold">Research Statement</h1>
+
+    <div class="mb-12">
+      <p class="mb-6 text-lg">
+        I am a PhD candidate in astroparticle physics specialising in the study
+        of Galactic Cosmic Rays (GCRs), with a focus on <span
+          class="font-bold text-accent">AMS-02</span
+        > data analysis and <span class="font-bold text-accent"
+          >GCR transport phenomenology</span
+        >. My work combines data-driven methods and theoretical modelling to
+        investigate cosmic-ray propagation and composition.
+        Recent projects include a quantitative evaluation of <span
+          class="font-bold text-accent"
+          >machine learning techniques for antideuteron searches</span
+        > and a reassessment of electron-capture decay within GCR transport frameworks.
+      </p>
+    </div>
+
+    <!-- <h2 class="text-2xl font-bold mb-6">Research Areas</h2> -->
+    <!-- <div class="grid gap-8 mb-12"> -->
+    <!--   { -->
+    <!--     research_areas.map((area) => ( -->
+    <!--       <div class="flex gap-6 items-start"> -->
+    <!--         <BetterIcon> -->
+    <!--           <svg -->
+    <!--             xmlns="http://www.w3.org/2000/svg" -->
+    <!--             viewBox="0 0 24 24" -->
+    <!--             fill="none" -->
+    <!--             stroke-width="2" -->
+    <!--             class="size-6 stroke-accent" -->
+    <!--           > -->
+    <!--             <path -->
+    <!--               stroke-linecap="round" -->
+    <!--               stroke-linejoin="round" -->
+    <!--               d={RESEARCH_ICONS[area.field as keyof typeof RESEARCH_ICONS]?.path || RESEARCH_ICONS['computer-science'].path} -->
+    <!--             /> -->
+    <!--           </svg> -->
+    <!--         </BetterIcon> -->
+    <!--         <div> -->
+    <!--           <h3 class="text-xl font-semibold mb-2">{area.title}</h3> -->
+    <!--           <p class="text-base">{area.description}</p> -->
+    <!--         </div> -->
+    <!--       </div> -->
+    <!--     )) -->
+    <!--   } -->
+    <!-- </div> -->
+
+    <List
+      listTitle="Current Projects"
+      listItems={[
+        {
+          title: "Antideuteron searches",
+          description:
+            "Quantitative Evaluation of Machine Learning Classifiers for Optimizing Background Rejection in Antideuteron Searches.",
+        },
+        {
+          title: "Revisiting EC decay in the context of GCR data",
+          description:
+            "Assessment of the Impact of Electron-Capture Decay on Predicted Cosmic-Ray Fluxes in Light of Current Observations.",
+        },
+      ]}
+    />
+  </div>
+</Layout>

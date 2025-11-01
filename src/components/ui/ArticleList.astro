@@ -1,0 +1,38 @@
+---
+interface Props {
+  listTitle: string;
+  listItems: {
+    title: string;
+    journal: string;
+    time: string;
+    link?: string;
+  }[];
+}
+const { listTitle, listItems } = Astro.props;
+const orderedItems = listItems.sort((a, b) => {
+  if (a.time === "") return -1;
+  if (b.time === "") return 1;
+  return new Date(b.time).getTime() - new Date(a.time).getTime();
+});
+---
+
+<h2 class="mb-8 text-3xl font-bold">{listTitle}</h2>
+<div class="space-y-6">
+  {
+    orderedItems.map((item) => (
+      <div class="rounded-lg bg-base-200 p-6 text-base-content">
+        {item.link != "" && item.link != "#" && (
+          <a href={item.link} target="_blank" class="hover:text-accent">
+            <h3 class="mb-2 text-xl font-semibold">{item.title}</h3>
+          </a>
+        )}
+        {item.link === "" && (
+          <h3 class="mb-2 text-xl font-semibold">{item.title}</h3>
+        )}
+        <p>
+          {item.journal} • {item.time}
+        </p>
+      </div>
+    ))
+  }
+</div>

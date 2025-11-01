@@ -1,0 +1,31 @@
+---
+import { Image } from "astro:assets";
+
+import SocialIcons from "./SocialIcons.astro";
+
+const { fullName, title, institute, profilePicture } = Astro.props;
+---
+
+<div class="flex-1">
+  <h1 class="mb-4 text-4xl font-bold">
+    Welcome! I'm <span class="text-secondary">{fullName}</span>
+  </h1>
+  <p class="mb-4 text-xl text-gray-600">
+    {title}{institute ? ` @ ${institute}` : ""}
+  </p>
+  <p class="mb-6 text-lg">
+    Exploring <span class="font-bold text-accent">Galactic Cosmic Rays</span> at
+    the intersection of particle physics and astrophysics.
+  </p>
+  <div class="flex gap-4">
+    <SocialIcons />
+  </div>
+</div>
+<div class="hidden size-72 lg:block">
+  <!-- Add your profile image -->
+  <Image
+    src={profilePicture}
+    alt={fullName}
+    class="mask mask-circle size-44 h-full w-full"
+  />
+</div>

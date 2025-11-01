@@ -1,0 +1,52 @@
+---
+import { isSkill } from "@/types/cv";
+import type { Skill, Publication } from "@/types/cv";
+import { highlightAuthor } from "@/lib/utils";
+
+interface Props {
+  elements: (Skill | Publication)[];
+}
+
+const { elements } = Astro.props;
+console.log(elements);
+---
+
+<ul class="space-y-8">
+  {
+    elements.map((element, index) => (
+      <li class="group">
+        {isSkill(element) ? (
+          <>
+            <h3 class="mb-2 text-lg font-bold">{element.title}</h3>
+            <p>{element.description}</p>
+          </>
+        ) : (
+          <>
+            {element.link != "" && (
+              <a
+                href={element.link as string}
+                class="block transition-colors duration-200 hover:text-accent"
+                target="_blank"
+              >
+                <h3 class="mb-2 text-lg font-bold">{element.title}</h3>
+              </a>
+            )}
+
+            {element.link === "" && (
+              <h3 class="mb-2 text-lg font-bold">{element.title}</h3>
+            )}
+            <p class="mb-2 text-base">
+              <span class="font-medium">Authors:</span>{" "}
+              <span set:html={highlightAuthor(element.authors as string)} />
+            </p>
+            <p class="mb-3 text-sm">
+              <span class="italic">{element.journal}</span> • {element.time}
+            </p>
+            <p>{element.abstract}</p>
+          </>
+        )}
+        {index !== elements.length - 1 && <hr class="mt-6 border-primary/40" />}
+      </li>
+    ))
+  }
+</ul>

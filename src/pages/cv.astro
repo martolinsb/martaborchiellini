@@ -1,0 +1,131 @@
+---
+import FloatingDownloadBTN from "@/components/ui/FloatingDownloadBTN.astro";
+import Layout from "@/layouts/Layout.astro";
+import {
+  experiences,
+  education,
+  skills,
+  publications,
+  grants,
+  otherExperiences,
+} from "../data/cv";
+import {profile} from "@/settings"
+import CvTimeline from "@/components/ui/CvTimeline.astro";
+
+import type { Experience, Education, Publication, Grant } from "../types/cv";
+import List from "@/components/ui/List.astro";
+import PublicationsList from "@/components/ui/PublicationsList.astro";
+import ElementList from "@/components/ui/ElementList.astro";
+import { orderElement } from "@/lib/utils.ts";
+
+let orderdExperiences: Experience[] = [];
+let orderdEducations: Education[] = [];
+let orderedPublications: Publication[] = [];
+let orderedProceedings: Publication[] = [];
+let orderedGrants: Grant[] = [];
+
+if (experiences.length > 0) {
+  orderdExperiences = experiences.sort((a, b) => {
+    return orderElement(a, b);
+  });
+}
+
+if (education.length > 0) {
+  orderdEducations = education.sort((a, b) => {
+    return orderElement(a, b);
+  });
+}
+
+const publicationsWithoutProceedings = publications.filter(
+  (pub) => pub.type.toLowerCase() !== "proceedings",
+);
+
+const proceedings = publications.filter(
+  (pub) => pub.type.toLowerCase() === "proceedings",
+);
+if (publicationsWithoutProceedings.length > 0) {
+  orderedPublications = publicationsWithoutProceedings.sort((a, b) => {
+    return orderElement(a, b);
+  });
+}
+if (proceedings.length > 0) {
+  orderedProceedings = proceedings.sort((a, b) => {
+    return orderElement(a, b);
+  });
+}
+
+if (grants.length > 0) {
+  orderedGrants = grants.sort((a, b) => {
+    return orderElement(a, b);
+  });
+}
+---
+
+<Layout title=`Curriculum | ${profile.fullName}`>
+  {
+    orderdEducations.length > 0 && (
+      <section class="mb-12">
+        <h2 class="mb-6 border-b pb-2 text-3xl font-bold">Education</h2>
+        <CvTimeline elements={orderdEducations} colored={true} />
+      </section>
+    )
+  }
+
+  {
+    orderdExperiences.length > 0 && (
+      <section class="mb-12">
+        <h2 class="mb-6 border-b pb-2 text-3xl font-bold">Experiences</h2>
+        <CvTimeline elements={orderdExperiences} colored={true} />
+      </section>
+    )
+  }
+
+  {
+    orderedPublications.length > 0 && (
+      <section class="mb-12">
+        <h2 class="mb-6 border-b pb-2 text-3xl font-bold">Last publications</h2>
+        <PublicationsList elements={orderedPublications} />
+      </section>
+    )
+  }
+
+  {
+    orderedProceedings.length > 0 && (
+      <section class="mb-12">
+        <h2 class="mb-6 border-b pb-2 text-3xl font-bold">
+          Conference proceedings
+        </h2>
+        <PublicationsList elements={orderedProceedings} />
+      </section>
+    )
+  }
+
+  {
+    orderedGrants.length > 0 && (
+      <section class="mb-12">
+        <h2 class="mb-6 border-b pb-2 text-3xl font-bold">
+          Grants and Fellowships
+        </h2>
+        <CvTimeline elements={orderedGrants} colored={true} />
+      </section>
+    )
+  }
+
+  {
+    otherExperiences.length > 0 && (
+      <section class="mb-12">
+        <h2 class="mb-6 border-b pb-2 text-3xl font-bold">Other Experiences</h2>
+        <ElementList elements={otherExperiences} />
+      </section>
+    )
+  }
+
+  {
+    skills.length > 0 && (
+      <section class="mb-12">
+        <List listTitle="Skills" listItems={skills} />
+      </section>
+    )
+  }
+  <FloatingDownloadBTN />
+</Layout>

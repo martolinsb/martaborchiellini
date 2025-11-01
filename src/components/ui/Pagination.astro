@@ -1,0 +1,19 @@
+---
+const { page } = Astro.props;
+---
+
+<div class="join mt-8 flex justify-center">
+  {/* Previous button */}
+  <a
+    href={page.url.prev}
+    class:list={["btn join-item btn-sm", { "btn-disabled": !page.url.prev }]}
+    >«</a
+  >
+
+  {/* Next button */}
+  <a
+    href={page.url.next}
+    class:list={["btn join-item btn-sm", { "btn-disabled": !page.url.next }]}
+    >»</a
+  >
+</div>

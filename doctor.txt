@@ -1,0 +1,42 @@
+Connecting to the registry
+Ok
+
+Checking npm version
+Not ok
+Use npm v11.6.2
+
+Checking node version
+Not ok
+Use node v22.21.0 (current: v22.11.0)
+
+Checking configured npm registry
+Ok
+using default registry (https://registry.npmjs.org/)
+
+Checking for git executable in PATH
+Ok
+/usr/bin/git
+
+Checking for global bin folder in PATH
+Ok
+/home/maio/.nvm/versions/node/v22.11.0/bin
+
+Checking permissions on cached files (this may take awhile)
+Ok
+
+Checking permissions on local node_modules (this may take awhile)
+Ok
+
+Checking permissions on global node_modules (this may take awhile)
+Ok
+
+Checking permissions on local bin folder
+Ok
+
+Checking permissions on global bin folder
+Ok
+
+Verifying cache contents (this may take awhile)
+Ok
+verified 245 tarballs
+

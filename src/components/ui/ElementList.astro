@@ -1,0 +1,25 @@
+---
+interface Element {
+  title: string;
+  description?: string;
+  time?: string;
+}
+interface Props {
+  elements: Element[];
+}
+
+const { elements } = Astro.props;
+---
+
+<ul class="space-y-8">
+  {
+    elements.map((element, index) => (
+      <li class="group">
+        <h3 class="mb-2 text-lg font-bold">{element.title}</h3>
+        <p class="whitespace-pre-line">{element.description}</p>
+        <p class="mt-1 text-sm italic">{element.time}</p>
+        {index !== elements.length - 1 && <hr class="mt-6 border-primary/40" />}
+      </li>
+    ))
+  }
+</ul>
