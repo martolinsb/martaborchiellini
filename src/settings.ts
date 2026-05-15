@@ -51,6 +51,6 @@ export const template = {
 export const seo = {
   default_title: `${profile.fullName} - ${profile.title}`,
   default_description:
-    "I am a PhD candidate in astroparticle physics specialising in the study of Galactic Cosmic Rays (GCRs), with a focus on AMS-02 data analysis and GCR transport phenomenology. My work combines data-driven methods and theoretical modelling to investigate cosmic-ray propagation and composition.",
+    "I am a PhD in astroparticle physics specialising in the study of Galactic Cosmic Rays (GCRs), with a focus on AMS-02 data analysis and GCR transport phenomenology. My work combines data-driven methods and theoretical modelling to investigate cosmic-ray propagation and composition.",
   default_image: "/public/open_graph_default.png",
 };
