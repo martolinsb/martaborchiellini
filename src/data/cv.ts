@@ -1,17 +1,17 @@
 export const experiences = [
-  // {
-  // 	company: 'Radium Institute (Institut du Radium)',
-  // 	time: '1914 - 1934',
-  // 	title: 'Director',
-  // 	location: 'Paris, France',
-  // 	description: 'Led groundbreaking studies on radioactivity and mentored future Nobel Prize laureates.',
-  // },
+  {
+    company: "INFN",
+    time: "January 2026 - present",
+    title: "Borsista Senior",
+    location: "Bologna, Italy",
+    description: "Cosmic-ray data analysis and interpretation. Part of the AMS collaboration.",
+  },
 ];
 
 export const education = [
   {
     school: "Kapteyn Astronomical Institute, University of Groningen",
-    time: "2021 - expected January 2026",
+    time: "2021 - March 2026",
     degree: "Ph.D.",
     location: "Groningen, Netherlands",
     description: "Cosmic ray antideuterons as a probe for new physics",
@@ -85,11 +85,11 @@ export const publications = [
   {
     title: "Revisiting electron-capture decay for Galactic cosmic-ray data.",
     authors: "M. Borchiellini, D. Maurin and M. Vecchi",
-    journal: "Submitted to Astropart. Phys.",
-    time: "2025",
-    link: "https://arxiv.org/abs/2510.14544",
+    journal: "Astroparticle Physics, 176, 103203 (2026)",
+    time: "2026",
+    link: "https://doi.org/10.1016/j.astropartphys.2025.103203",
     abstract:
-      "I contributed to the derivation of the analytical solution to simplified cosmic ray transport, analysis of the results and writing of the draft",
+      "I led the work contributing to the derivation of the analytical solution of simplified cosmic ray transport, to the analysis of the results and the writing of the paper",
     type: "refereed",
   },
   {

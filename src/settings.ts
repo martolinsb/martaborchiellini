@@ -1,7 +1,7 @@
 export const profile = {
-  fullName: "Marta Borchiellini",
-  title: "PhD Candidate",
-  institute: "University of Groningen",
+  fullName: "Marta Borchiellini, PhD",
+  title: "",
+  institute: "INFN Bologna",
   author_name: "M. Borchiellini", // Author name to be highlighted in the papers section
   research_areas: [
     {
