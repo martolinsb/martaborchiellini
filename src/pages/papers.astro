@@ -36,7 +36,7 @@ if (publicationsWithoutProceedings.length > 0) {
         <div class="space-y-8">
             {
                 orderedPub.map((paper) => (
-                    <div class="card bg-base-200">
+                    <div id={`paper-${orderedPub.indexOf(paper) + 1}`} class="card bg-base-200">
                         <div class="card-body">
                             <h2 class="card-title text-xl">
                                 <a
